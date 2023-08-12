@@ -20,6 +20,15 @@ class Channel:
 
         self._fetch_channel_info()
 
+    def print_info(self) -> None:
+
+        """Выводит в консоль информацию о канале."""
+        url = f"https://www.googleapis.com/youtube/v3/channels?part=snippet&id={self.channel_id}&key={api_key}"
+        response = requests.get(url)
+        data = response.json()
+
+        print(json.dumps(data, indent=2, ensure_ascii=False))
+
     def _fetch_channel_info(self) -> None:
         """Заполняет атрибуты экземпляра данными о канале."""
         url = f"https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id={self.channel_id}&key={api_key}"
