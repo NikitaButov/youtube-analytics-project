@@ -15,15 +15,39 @@ class Channel:
         self.title = self.dict_of_channel.get('items')[0].get('snippet').get('title')  # название канала
         self.description = self.dict_of_channel.get('items')[0].get('snippet').get('description')  # описание канала
         self.url = f"https://www.youtube.com/channel/{self.__channel_id}"  # ссылка на канал
-        self.count_podpishchikov = int(self.dict_of_channel.get('items')[0].get('statistics').get(
-            'subscriberCount'))  # количество подписчиков
+        self.count_podpishchikov = int(
+            self.dict_of_channel.get('items')[0].get('statistics').get('subscriberCount'))  # количество подписчиков
         self.video_count = int(
             self.dict_of_channel.get('items')[0].get('statistics').get('videoCount'))  # количество видео
-        self.count_views = int(self.dict_of_channel.get('items')[0].get('statistics').get(
-            'viewCount'))  # общее количество просмотров
+        self.count_views = int(
+            self.dict_of_channel.get('items')[0].get('statistics').get('viewCount'))  # общее количество просмотров
 
     def __str__(self):
         return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """Сумма подписчиков двух каналов"""
+        return self.count_podpishchikov + other.count_podpishchikov
+
+    def __sub__(self, other):
+        """Разность подписчиков двух каналов"""
+        return self.count_podpishchikov - other.count_podpishchikov
+
+    def __lt__(self, other):
+        """Сравнение двух каналов: меньше"""
+        return self.count_podpishchikov < other.count_podpishchikov
+
+    def __le__(self, other):
+        """Сравнение двух каналов: меньше или равно"""
+        return self.count_podpishchikov <= other.count_podpishchikov
+
+    def __gt__(self, other):
+        """Сравнение двух каналов: больше"""
+        return self.count_podpishchikov > other.count_podpishchikov
+
+    def __ge__(self, other):
+        """Сравнение двух каналов: больше или равно"""
+        return self.count_podpishchikov >= other.count_podpishchikov
 
     @property
     def channel_id(self):

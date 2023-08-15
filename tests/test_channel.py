@@ -32,3 +32,29 @@ def test_print_info(channel, capsys):
     channel.print_info()
     captured = capsys.readouterr()
     assert captured.out != ""
+
+
+def test_add():
+    channel1 = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
+    channel2 = Channel('UCwHL6WHUarjGfUM_586me8w')
+
+    assert channel1 + channel2 != 100100
+
+
+def test_sub():
+    channel1 = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
+    channel2 = Channel('UCwHL6WHUarjGfUM_586me8w')
+
+    assert channel1 - channel2 != -48300
+    assert channel2 - channel1 != 48300
+
+
+def test_comparison():
+    channel1 = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
+    channel2 = Channel('UCwHL6WHUarjGfUM_586me8w')
+
+    assert (channel1 > channel2) == False
+    assert (channel1 >= channel2) == False
+    assert (channel1 < channel2) == True
+    assert (channel1 <= channel2) == True
+    assert (channel1 == channel2) == False
