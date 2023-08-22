@@ -1,8 +1,11 @@
 import datetime
 
+from isodate import parse_duration
+
 from src.playlist import PlayList
 
-if __name__ == '__main__':
+
+def test_playlist():
     pl = PlayList('PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw')
     assert pl.title == "Moscow Python Meetup №81"
     assert pl.url == "https://www.youtube.com/playlist?list=PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw"
