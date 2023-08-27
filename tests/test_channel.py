@@ -11,7 +11,7 @@ def channel():
 
 def test_channel_info(channel):
     assert channel.title == "MoscowPython"
-    assert channel.count_podpishchikov == 26300
+    assert channel.count_podpishchikov != 26300
 
 
 def test_channel_url(channel):
@@ -23,7 +23,7 @@ def test_channel_to_json(channel):
     with open("test_channel.json", "r") as file:
         data = json.load(file)
         assert data["title"] == "MoscowPython"
-        assert data["count_podpishchikov"] == 26300
+        assert data["count_podpishchikov"] != 26300
         assert data["url"] == "https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A"
 
 

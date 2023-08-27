@@ -24,3 +24,10 @@ def test_plvideo():
     assert video2.url == f"https://www.youtube.com/watch?v=4fObz_qw9u4"
     assert video2.views != 1000
     assert video2.likes != 500
+
+def test_broken_video():
+    broken_video = Video('broken_video_id')
+    assert broken_video.title is None
+    assert broken_video.likes is None
+    assert broken_video.url is None
+    assert broken_video.views is None

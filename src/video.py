@@ -10,12 +10,18 @@ class Video:
     def __init__(self, video_id: str) -> None:
         """Экземпляр инициализируется данными о видео"""
         self.video_id = video_id
-        self.dict_of_video = self.get_service().videos().list(id=self.video_id,
-                                                              part='snippet,statistics').execute()
-        self.title = self.dict_of_video.get('items')[0].get('snippet').get('title')
-        self.url = f"https://www.youtube.com/watch?v={video_id}"
-        self.views = int(self.dict_of_video.get('items')[0].get('statistics').get('viewCount'))
-        self.likes = int(self.dict_of_video.get('items')[0].get('statistics').get('likeCount'))
+        try:
+            self.dict_of_video = self.get_service().videos().list(id=self.video_id,
+                                                                  part='snippet,statistics').execute()
+            self.title = self.dict_of_video.get('items')[0].get('snippet').get('title')
+            self.url = f"https://www.youtube.com/watch?v={video_id}"
+            self.views = int(self.dict_of_video.get('items')[0].get('statistics').get('viewCount'))
+            self.likes = int(self.dict_of_video.get('items')[0].get('statistics').get('likeCount'))
+        except:
+            self.title = None
+            self.url = None
+            self.views = None
+            self.likes = None
 
     def __str__(self) -> str:
         return self.title
